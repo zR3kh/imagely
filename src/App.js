@@ -8,10 +8,6 @@ function App() {
   const [images, setImages]= React.useState()
 
   const getImages = (e, unsplashUrl, query, number, accessKey) => {
-    console.log(unsplashUrl)
-    console.log(query)
-    console.log(number)
-    console.log(accessKey)
     e.preventDefault()
     fetch(`${unsplashUrl}?query=${query}&client_id=${accessKey}&per_page=${number}`, {
       method: "GET"
@@ -21,7 +17,7 @@ function App() {
   }
 
   return (
-    <div className="App bg-slate-300">
+    <div className="App bg-slate-300 h-full min-h-screen">
       <Header/>
       <SearchImage getImages={getImages}/>
       <Gallery images={images}/>
