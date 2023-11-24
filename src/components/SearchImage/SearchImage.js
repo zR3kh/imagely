@@ -27,15 +27,15 @@ export default function SearchImage(props) {
             <div className="flex justify-between w-1/5 mt-8 mb-8">
               <div className="flex flex-col items-center">
                 <label className="text-2xl mb-1 text-violet-600 font-bold" htmlFor="50">50</label>
-                <input className="cursor-pointer h-5 w-full" type="radio" value={50} id="50" onChange={(e) => setNumber(e.target.value)} checked={number == 50}/>
+                <input name="imagesNumber" className="cursor-pointer h-5 w-full" type="radio" value={50} id="50" onChange={(e) => setNumber(e.target.value)} checked={number === 50}/>
               </div>
               <div className="flex flex-col items-center">
                 <label className="text-2xl mb-1 text-violet-600 font-bold" htmlFor="100">100</label>
-                <input className="cursor-pointer h-5 w-full" type="radio" value={100} id="100" onChange={(e) => setNumber(e.target.value)} checked={number == 100}/>
+                <input name="imagesNumber" className="cursor-pointer h-5 w-full" type="radio" value={100} id="100" onChange={(e) => setNumber(e.target.value)} checked={number === 100}/>
               </div>
               <div className="flex flex-col items-center">
                 <label className="text-2xl mb-1 text-violet-600 font-bold" htmlFor="200">200</label>
-                <input className="cursor-pointer h-5 w-full" type="radio" value={200} id="200" onChange={(e) => setNumber(e.target.value)} checked={number == 200}/>
+                <input name="imagesNumber" className="cursor-pointer h-5 w-full" type="radio" value={200} id="200" onChange={(e) => setNumber(e.target.value)} checked={number === 200}/>
               </div>
             </div>
             <button 
