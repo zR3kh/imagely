@@ -1,16 +1,17 @@
 import React from "react"
-import config from "../../config.js"
 
 export default function SearchImage(props) {
   
-  const [query, setQuery] = React.useState('')
-  const [number, setNumber] = React.useState(50)
-  const accessKey = config.publicKey
-  const privateKey = config.privateKey
-  const unsplashUrl = config.unsplashUrl
+  const { query, setQuery, number, setNumber } = props.data;
 
+  /**
+   * Call the API on button click
+   * and prevent page reloading
+   * @param {event} e 
+   */
   const handleSubmit = (e) => {
-    props.getImages(e, unsplashUrl, query, number, accessKey)
+    e.preventDefault();
+    props.getImages()
   }
 
   return (
