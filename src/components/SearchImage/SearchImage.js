@@ -19,12 +19,12 @@ export default function SearchImage(props) {
         <form className="flex flex-col justify-center items-center" onSubmit={(e) => handleSubmit(e)}>
             <input 
                 value={query}
-                className="w-2/5 border-4 outline-0 p-2 text-2xl rounded-lg"
+                className="sm:w-3/5 lg:w-2/5 border-4 outline-0 p-2 text-2xl rounded-lg"
                 type="text" 
                 placeholder="Type your image name here..."
                 onChange={(e) => setQuery(e.target.value)}
             />
-            <div className="flex justify-between w-1/5 mt-8 mb-8">
+            <div className="flex justify-between lg:w-1/5 sm:w-2/5 mt-8 mb-8">
               <div className="flex flex-col items-center">
                 <label className="text-2xl mb-1 text-violet-600 font-bold" htmlFor="50">50</label>
                 <input name="imagesNumber" className="cursor-pointer h-5 w-full" type="radio" value={50} id="50" onChange={(e) => setNumber(e.target.value)} checked={number === 50}/>
@@ -39,7 +39,7 @@ export default function SearchImage(props) {
               </div>
             </div>
             <button 
-                className="p-3 bg-slate-100 rounded-lg w-1/5 text-2xl font-bold text-violet-600"
+                className="p-3 bg-slate-100 rounded-lg lg:w-1/5 sm:w-2/5 text-2xl font-bold text-violet-600"
                 type="submit"
             >Search</button>
         </form>
