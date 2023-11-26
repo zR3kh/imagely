@@ -8,7 +8,7 @@ export default function (props) {
         <div className='flex items-center justify-between text-white p-2 sm:pl-2 sm:pr-2 bg-slate-900 absolute top-48 w-full cursor-pointer'>
             <p className='font-bold'>DarkMode : </p>
             <label className="switch">
-              <input type="checkbox"/>
+              <input onChange={(e) => props.handleDarkMode(e)} type="checkbox" checked={props.darkMode}/>
               <span className="slider"></span>
             </label>
         </div>

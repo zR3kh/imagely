@@ -13,6 +13,7 @@ function App() {
   const [number, setNumber] = React.useState(50);
   const [page, setPage] = React.useState(1);
   const [isSidebarDisplayed, setIsSidebarDisplayed] = React.useState(false);
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = React.useState(false)
 
   const appRef = React.useRef();
   const sidebarRef = React.useRef();
@@ -81,11 +82,20 @@ function App() {
     }
   }
 
+  /**
+   * Handle darkMode
+   * @param {event} e 
+   */
+  const handleDarkMode = (e) => {
+    e.target.checked ? setIsDarkModeEnabled(true) : setIsDarkModeEnabled(false)
+    console.log(isDarkModeEnabled)
+    console.log(e.target.checked)
+  }
   return (
-    <div ref={appRef} className='App bg-slate-300 h-full min-h-screen'>
-      <Sidebar innerRef={sidebarRef} showSidebar={isSidebarDisplayed}/>
-      <Header innerRef={headerImageRef} setSidebar={setIsSidebarDisplayed} />
-      <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber }} />
+    <div ref={appRef} className={`App ${isDarkModeEnabled ? 'dark:bg-slate-600' : 'bg-slate-300'} h-full min-h-screen`}>
+      <Sidebar innerRef={sidebarRef} showSidebar={isSidebarDisplayed} handleDarkMode={handleDarkMode} darkMode={isDarkModeEnabled}/>
+      <Header innerRef={headerImageRef} setSidebar={setIsSidebarDisplayed} darkMode={isDarkModeEnabled} />
+      <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber }} darkMode={isDarkModeEnabled}/>
       <Gallery images={images} />
     </div>
   );
