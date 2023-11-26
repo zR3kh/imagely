@@ -2,7 +2,7 @@ import React from "react"
 
 export default function SearchImage(props) {
   
-  const { query, setQuery, number, setNumber } = props.data;
+  const { query, setQuery, number, setNumber, setImages } = props.data;
 
   /**
    * Call the API on button click
@@ -11,7 +11,8 @@ export default function SearchImage(props) {
    */
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.getImages()
+    setImages([]);
+    props.getImages();
   }
 
   return (

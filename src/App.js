@@ -95,7 +95,7 @@ function App() {
     <div ref={appRef} className={`App ${isDarkModeEnabled ? 'dark:bg-slate-600' : 'bg-slate-300'} h-full min-h-screen`}>
       <Sidebar innerRef={sidebarRef} showSidebar={isSidebarDisplayed} handleDarkMode={handleDarkMode} darkMode={isDarkModeEnabled}/>
       <Header innerRef={headerImageRef} setSidebar={setIsSidebarDisplayed} darkMode={isDarkModeEnabled} />
-      <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber }} darkMode={isDarkModeEnabled}/>
+      <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber, setImages: setImages}} darkMode={isDarkModeEnabled}/>
       <Gallery images={images} />
     </div>
   );
