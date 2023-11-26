@@ -4,7 +4,6 @@ import SearchImage from './components/SearchImage/SearchImage';
 import Gallery from './components/Gallery/Gallery';
 import config from './config';
 import Sidebar from './components/Sidebar/Sidebar';
-import Settings from './components/Menu/Settings';
 import { nanoid } from 'nanoid';
 
 function App() {
@@ -14,11 +13,9 @@ function App() {
   const [number, setNumber] = React.useState(50);
   const [page, setPage] = React.useState(1);
   const [isSidebarDisplayed, setIsSidebarDisplayed] = React.useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
 
   const appRef = React.useRef();
   const sidebarRef = React.useRef();
-  const settingsRef = React.useRef();
   const headerImageRef = React.useRef();
   const accessKey = config.publicKey;
   const unsplashUrl = config.unsplashUrl;
@@ -46,7 +43,7 @@ function App() {
       appRef.current.removeEventListener('click', handleSidebar);
     }
 
-  }, [isSidebarDisplayed, isSettingsOpen])
+  }, [isSidebarDisplayed])
 
   /**
    * API Call
@@ -77,34 +74,19 @@ function App() {
   const handleSidebar = (e) => {
     if (!headerImageRef.current.contains(e.target)) {
       if (isSidebarDisplayed) {
-        if (isSettingsOpen) {
-          if (!sidebarRef.current.contains(e.target) && !settingsRef.current.contains(e.target)) {
-            setIsSidebarDisplayed(false);
-            setIsSettingsOpen(false);
-          }
-        } else {
-          if (!sidebarRef.current.contains(e.target)) {
-            setIsSidebarDisplayed(false);
-          }
-        }
+        if (!sidebarRef.current.contains(e.target)) {
+          setIsSidebarDisplayed(false);
+        } 
       }
     }
   }
 
   return (
     <div ref={appRef} className='App bg-slate-300 h-full min-h-screen'>
-      <Sidebar innerRef={sidebarRef} showSidebar={isSidebarDisplayed} setSettings={setIsSettingsOpen} />
+      <Sidebar innerRef={sidebarRef} showSidebar={isSidebarDisplayed}/>
       <Header innerRef={headerImageRef} setSidebar={setIsSidebarDisplayed} />
-      {
-      isSettingsOpen
-      ?
-      <Settings innerRef={settingsRef} />
-      :
-      <div>
-        <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber }} />
-        <Gallery images={images} />
-      </div>
-      }
+      <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber }} />
+      <Gallery images={images} />
     </div>
   );
 }

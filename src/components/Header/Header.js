@@ -11,9 +11,15 @@ export default function Header(props) {
 
   return (
     <div className='flex items-center justify-between bg-slate-300	p-5 shadow-xl font-bold'>
-        <div className='flex-1 z-10'><img ref={props.innerRef} onClick={showSidebar} className='cursor-pointer' src={settings} alt="settings-icon" /></div>
-        <h1 className='text-5xl font-bold underline text-violet-600'>Imagely</h1>
-        <div className='flex-1'></div>
+        <div className='sm:flex-1 z-10'>
+          <img 
+            ref={props.innerRef} 
+            onClick={showSidebar} 
+            className='cursor-pointer' 
+            src={settings} 
+            alt="settings-icon" /></div>
+        <h1 className='text-4xl sm:text-5xl font-bold underline text-violet-600'>Imagely</h1>
+        <div className='sm:flex-1'></div>
     </div>
   )
 }

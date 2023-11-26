@@ -2,23 +2,15 @@ import React from 'react'
 
 export default function (props) {
 
-  /**
-   * Open or close menu sections
-   * @param {string} menu 
-   */
-  const handleMenu = (menu) => {
-    switch(menu) {
-      case 'settings':
-        props.setSettings(prevIsSettingsOpen => !prevIsSettingsOpen)
-        break;
-    }
-  }
-
   return (
     props.showSidebar &&
-    <div ref={props.innerRef} id='sidebar' className='bg-slate-500 h-screen lg:w-1/5 sm:w-1/4 fixed border-r-2 border-black'>
-        <div className='text-white p-1 lg:pl-5 sm:pl-2 bg-slate-900 absolute top-64 w-full cursor-pointer' onClick={() => handleMenu('settings')}>
-            <p className='font-bold'>Settings</p>
+    <div ref={props.innerRef} id='sidebar' className='bg-slate-500 h-screen sm:w-64 w-48 fixed border-r-2 border-black'>
+        <div className='flex items-center justify-between text-white p-2 sm:pl-2 sm:pr-2 bg-slate-900 absolute top-48 w-full cursor-pointer'>
+            <p className='font-bold'>DarkMode : </p>
+            <label className="switch">
+              <input type="checkbox"/>
+              <span className="slider"></span>
+            </label>
         </div>
     </div>
 
