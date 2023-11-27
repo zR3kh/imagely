@@ -104,7 +104,7 @@ function App() {
       <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber, setImages: setImages}} darkMode={isDarkModeEnabled}/>
       <Gallery
         imagesToDisplay={isLikedImages ? likedImages : images}
-        addLikedImage={setLikedImages}/>
+        updateImageArray={setLikedImages}/>
     </div>
   );
 }
