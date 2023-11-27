@@ -9,11 +9,13 @@ import { nanoid } from 'nanoid';
 function App() {
 
   const [images, setImages] = React.useState([]);
+  const [likedImages, setLikedImages] = React.useState([]);
   const [query, setQuery] = React.useState('');
   const [number, setNumber] = React.useState(50);
   const [page, setPage] = React.useState(1);
   const [isSidebarDisplayed, setIsSidebarDisplayed] = React.useState(false);
-  const [isDarkModeEnabled, setIsDarkModeEnabled] = React.useState(false)
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = React.useState(false);
+  const [isLikedImages, setIsLikedImages] = React.useState(false);
 
   const appRef = React.useRef();
   const sidebarRef = React.useRef();
@@ -88,15 +90,21 @@ function App() {
    */
   const handleDarkMode = (e) => {
     e.target.checked ? setIsDarkModeEnabled(true) : setIsDarkModeEnabled(false)
-    console.log(isDarkModeEnabled)
-    console.log(e.target.checked)
   }
+  
   return (
     <div ref={appRef} className={`App ${isDarkModeEnabled ? 'dark:bg-slate-600' : 'bg-slate-300'} h-full min-h-screen`}>
-      <Sidebar innerRef={sidebarRef} showSidebar={isSidebarDisplayed} handleDarkMode={handleDarkMode} darkMode={isDarkModeEnabled}/>
+      <Sidebar 
+        innerRef={sidebarRef} 
+        showSidebar={isSidebarDisplayed} 
+        handleDarkMode={handleDarkMode} 
+        darkMode={isDarkModeEnabled} 
+        isLikedImages={setIsLikedImages}/>
       <Header innerRef={headerImageRef} setSidebar={setIsSidebarDisplayed} darkMode={isDarkModeEnabled} />
       <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber, setImages: setImages}} darkMode={isDarkModeEnabled}/>
-      <Gallery images={images} />
+      <Gallery
+        imagesToDisplay={isLikedImages ? likedImages : images}
+        addLikedImage={setLikedImages}/>
     </div>
   );
 }
