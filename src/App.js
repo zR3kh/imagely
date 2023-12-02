@@ -14,7 +14,7 @@ function App() {
   const [number, setNumber] = React.useState(50);
   const [page, setPage] = React.useState(1);
   const [isSidebarDisplayed, setIsSidebarDisplayed] = React.useState(false);
-  const [isDarkModeEnabled, setIsDarkModeEnabled] = React.useState(false);
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = React.useState(JSON.parse(localStorage.getItem('darkMode')));
   const [isLikedImages, setIsLikedImages] = React.useState(false);
 
   const appRef = React.useRef();
@@ -89,7 +89,9 @@ function App() {
    * @param {event} e 
    */
   const handleDarkMode = (e) => {
-    e.target.checked ? setIsDarkModeEnabled(true) : setIsDarkModeEnabled(false)
+    const isDarkMode = e.target.checked;
+    setIsDarkModeEnabled(isDarkMode)
+    localStorage.setItem('darkMode', isDarkMode)
   }
   
   return (
