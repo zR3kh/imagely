@@ -93,15 +93,23 @@ function App() {
     setIsDarkModeEnabled(isDarkMode)
     localStorage.setItem('darkMode', isDarkMode)
   }
+
+  /**
+   * Handle liked images
+   * @param {event} e 
+   */
+  const handleLikedImages = (e) => {
+    const isFavorites = e.target.checked;
+    setIsLikedImages(isFavorites)
+  }
   
   return (
     <div ref={appRef} className={`App ${isDarkModeEnabled ? 'dark:bg-slate-600' : 'bg-slate-300'} h-full min-h-screen`}>
       <Sidebar 
         innerRef={sidebarRef} 
         showSidebar={isSidebarDisplayed} 
-        handleDarkMode={handleDarkMode} 
-        darkMode={isDarkModeEnabled} 
-        isLikedImages={setIsLikedImages}/>
+        darkMode={{handleDarkMode: handleDarkMode, isDarkModeEnabled: isDarkModeEnabled}} 
+        likedImages={{handleLikedImages: handleLikedImages, isLikedImages: isLikedImages}}/>
       <Header innerRef={headerImageRef} setSidebar={setIsSidebarDisplayed} darkMode={isDarkModeEnabled} />
       <SearchImage getImages={getImages} data={{ query: query, setQuery: setQuery, number: number, setNumber: setNumber, setImages: setImages}} darkMode={isDarkModeEnabled}/>
       <Gallery
